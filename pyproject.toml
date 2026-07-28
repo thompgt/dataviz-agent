@@ -56,6 +56,7 @@ dataviz_agent = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 addopts = "-q --strict-markers"
 markers = [
   "slow: marks tests as slow",
