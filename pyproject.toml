@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataviz-agent"
+version = "0.1.0"
+description = "A natural-language data visualization agent: profile any tabular data, parse a plain-English question, and render an accessible, validated chart."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "thompgt" }]
+keywords = ["data-visualization", "agent", "natural-language", "charts", "accessibility", "colorblind"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+  "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+matplotlib = ["matplotlib>=3.7"]
+plotly = ["plotly>=5.18"]
+excel = ["openpyxl>=3.1"]
+parquet = ["pyarrow>=14.0"]
+all = ["matplotlib>=3.7", "plotly>=5.18", "openpyxl>=3.1", "pyarrow>=14.0"]
+dev = [
+  "pytest>=7.4",
+  "pytest-cov>=4.1",
+  "matplotlib>=3.7",
+  "plotly>=5.18",
+  "openpyxl>=3.1",
+  "pyarrow>=14.0",
+]
+
+[project.scripts]
+dataviz-agent = "dataviz_agent.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/thompgt/dataviz-agent"
+Repository = "https://github.com/thompgt/dataviz-agent"
+Issues = "https://github.com/thompgt/dataviz-agent/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dataviz_agent = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "slow: marks tests as slow",
+  "optional_dep: requires an optional rendering backend",
+]
+filterwarnings = [
+  "error::DeprecationWarning:dataviz_agent.*",
+]

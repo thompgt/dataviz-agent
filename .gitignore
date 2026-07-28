@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+
+# Rendered artifacts from ad-hoc runs. Checked-in examples live in
+# examples/gallery/ and are added with `git add -f`.
+out/
+*.local.html
