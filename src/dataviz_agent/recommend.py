@@ -131,7 +131,12 @@ def recommend(
 
     if y_col is None:
         y_col = _pick_measure(profile)
-    if x_col is None and y_col is not None and intent != "headline":
+    if x_col is None and y_col is not None and intent == "distribution":
+        # "distribution of revenue" - the measure is its own axis. Auto-filling
+        # a grouping here answers a different question: the trend of revenue,
+        # not the shape of it.
+        x_col = y_col
+    elif x_col is None and y_col is not None and intent != "headline":
         # "headline" is the caller saying the number itself is the story, so
         # nothing gets auto-filled onto x to compare it across.
         x_col = _pick_axis(profile, exclude={y_col.name})
